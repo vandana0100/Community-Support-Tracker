@@ -47,10 +47,56 @@ body {
 }
 
 /* Main Content */
-.main-content {
+main {
     padding: 20px;
 }
 
+#donation-form-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#donation-form-section h2 {
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input,
+form textarea,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #2ecc71;
+}
+
+/* Sections */
 .section {
     background-color: white;
     border-radius: 8px;
@@ -85,7 +131,8 @@ body {
     }
 
     /* Sections adapt to screen width */
-    .section {
+    .section,
+    #donation-form-section {
         padding: 15px;
     }
 }
