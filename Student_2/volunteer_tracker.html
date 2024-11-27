@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Volunteer Hours Tracker - Log your volunteer contributions">
+    <title>Volunteer Hours Tracker</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Volunteer Hours Tracker</h1>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="volunteer_tracker.html" class="active">Volunteer Tracker</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section>
+            <h2>Log Your Volunteer Hours</h2>
+            <form id="volunteer-form">
+                <!-- Charity Name -->
+                <label for="charity-name">Charity Name:</label>
+                <input type="text" id="charity-name" name="charity-name" placeholder="Enter charity name" required>
+
+                <!-- Hours Volunteered -->
+                <label for="hours-volunteered">Hours Volunteered:</label>
+                <input type="number" id="hours-volunteered" name="hours-volunteered" placeholder="Enter hours volunteered" required min="1">
+
+                <!-- Date -->
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <!-- Volunteer Experience Rating -->
+                <label for="experience-rating">Volunteer Experience Rating:</label>
+                <select id="experience-rating" name="experience-rating" required>
+                    <option value="">Select a rating</option>
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="3">3 - Good</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Volunteer Hours Tracker | All rights reserved</p>
+    </footer>
+</body>
+
+</html>
