@@ -1,5 +1,3 @@
-// donationTracker.js
-
 // Function to update the total donation summary
 function updateDonationSummary() {
   const tableBody = document.getElementById('donation-table-body');
@@ -32,6 +30,7 @@ function handleDeleteButtonClick(event) {
   // Update the summary after deletion
   updateDonationSummary();
 }
+module.exports = { updateDonationSummary, handleDeleteButtonClick, initializeDonationTable };
 
 // Function to initialize the donation table
 function initializeDonationTable() {
@@ -59,5 +58,3 @@ function initializeDonationTable() {
   // Update the donation summary after the table is populated
   updateDonationSummary();
 }
-
-module.exports = { updateDonationSummary, handleDeleteButtonClick, initializeDonationTable };

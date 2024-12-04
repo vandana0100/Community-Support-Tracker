@@ -1,5 +1,3 @@
-// donationTracker.test.js
-
 const { updateDonationSummary, handleDeleteButtonClick, initializeDonationTable } = require('./donationTracker.js');
 
 describe('Donation Tracker', () => {
