@@ -12,7 +12,7 @@ This project provides a seamless user experience for tracking donations, volunte
 
 ## Project Features  
 
-### Donation Tracker  
+### Donation Tracker  - Stage One
 The Donation Tracker is designed to simplify the process of managing and recording donations.  
 **Key Features:**  
 - A user-friendly form to input donation details (charity name, amount, date, and donor comments).  
@@ -20,7 +20,34 @@ The Donation Tracker is designed to simplify the process of managing and recordi
 - Clean and intuitive layout for effective data visualization.  
 
 **Student Contribution:**  
-Vandana Bhangu takes the lead in implementing this feature, ensuring it meets design standards, usability, and functionality requirements.  
+Vandana Bhangu takes the lead in implementing this feature, ensuring it meets design standards, usability, and functionality requirements. 
+
+# Donation Tracker - Stage Two
+
+## Overview
+
+The **Donation Tracker** helps users track donations to charities. In **Stage Two**, the app includes:
+- **Total Donation Summary**: Dynamically calculates and displays the total donation amount.
+- **Donation Deletion**: Allows users to delete donations from the table and `localStorage`.
+
+## Features
+- **Total Donation Calculation**: The total donation amount is automatically updated in the summary section.
+- **Donation Deletion**: Donations can be removed from both the table and `localStorage` when the "Delete" button is clicked.
+- **Persistence**: Donations are stored in `localStorage`, so they persist even after page reloads.
+
+## Files
+- `donationTracker.js`: Contains the logic for updating the total donation and deleting donations.
+- `donationTracker.test.js`: Jest tests to verify the correct functionality of the app.
+- `index.html`: The HTML structure for the donation table and summary.
+- `style.css`: Styling for the app.
+
+## Usage
+1. Open `index.html` in your browser.
+2. Donations will be displayed from `localStorage` and can be deleted.
+3. The total donation amount will update automatically after deletion.
+
+**Created by Vandana Bhangu**
+
 
 ---
 
