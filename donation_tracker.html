@@ -7,10 +7,21 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Header Section -->
   <header>
     <h1>Donation Tracker</h1>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="#donation-form-section">Add Donation</a></li>
+        <li><a href="#donation-tracker">View Donations</a></li>
+      </ul>
+    </nav>
   </header>
+
+  <!-- Main Content Area -->
   <main>
+    <!-- Donation Form Section -->
     <section id="donation-form-section">
       <h2>Add a New Donation</h2>
       <form id="donation-form">
@@ -24,18 +35,38 @@
         <input type="date" id="donation-date" name="donationDate" required>
  
         <label for="donor-message">Donor Comment/Message:</label>
-        <textarea id="donor-message" name="donorMessage"></textarea>
+        <textarea id="donor-message" name="donorMessage" rows="4"></textarea>
  
         <button type="submit">Submit Donation</button>
       </form>
     </section>
+
+    <!-- Donation Tracker Section -->
+    <section id="donation-tracker">
+      <h2>Donation Records</h2>
+      <table id="donation-table" border="1">
+        <thead>
+          <tr>
+            <th>Charity Name</th>
+            <th>Donation Amount</th>
+            <th>Date</th>
+            <th>Donor's Comment</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="donation-table-body">
+          <!-- Rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </section>
   </main>
- 
+
+  <!-- Footer Section -->
   <footer>
     <p>2024 PiXELL River Financial. All Rights Reserved.</p>
   </footer>
-  <script src="donationTracker.js"></script>
 
+  <script src="donationTracker.js"></script>
+  
 </body>
 </html>
- 
