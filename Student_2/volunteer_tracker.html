@@ -19,6 +19,7 @@
 
     <!-- Main Content -->
     <main>
+        <!-- Form Section -->
         <section>
             <h2>Log Your Volunteer Hours</h2>
             <form id="volunteer-form">
@@ -49,6 +50,25 @@
                 <button type="submit">Submit</button>
             </form>
         </section>
+
+         <!-- Voluntary Tracker Section -->
+    <section id="volunteer-tracker">
+        <h2>Logged Volunteer Hours</h2>
+        <table id="volunteer-table" border="1">
+          <thead>
+            <tr>
+                <th>Charity Name</th>
+                <th>Hours Volunteered</th>
+                <th>Date</th>
+                <th>Experience Rating</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="volunteer-table-body">
+            <!-- Rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </section>
     </main>
 
     <!-- Footer -->
