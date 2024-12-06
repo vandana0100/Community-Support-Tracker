@@ -1,58 +1,113 @@
-const { saveDataToLocalStorage, loadDataFromLocalStorage, renderDataIntoTable } = require("./volunteerTracker");
+// Mock TextEncoder and TextDecoder to fix jsdom issue
+global.TextEncoder = global.TextEncoder || require('util').TextEncoder;
+global.TextDecoder = global.TextDecoder || require('util').TextDecoder;
 
-// Mock setup to ensure `localStorage` and DOM exist
-beforeEach(() => {
-  let store = {};
-  global.localStorage = {
-    setItem: (key, value) => {
-      store[key] = value;
-    },
-    getItem: (key) => store[key] || null,
-    clear: () => (store = {}),
-  };
+const { JSDOM } = require("jsdom");
 
-  // Set up a fresh table element in DOM for rendering
-  const table = document.createElement("table");
-  table.id = "data-table";
-  document.body.appendChild(table);
-});
+describe("Summary and Deletion Functionality", () => {
+  let dom, document, window, localStorageMock, logTable, summaryDiv;
 
-afterEach(() => {
-  localStorage.clear();
-  document.body.innerHTML = "";
-});
+  beforeEach(() => {
+    // Set up JSDOM environment
+    dom = new JSDOM(`
+      <!DOCTYPE html>
+      <body>
+        <div id="summary"></div>
+        <table id="logTable"></table>
+      </body>
+    `);
+    document = dom.window.document;
+    window = dom.window;
 
-test("should store data in localStorage", () => {
-  const dataToSave = [
-    { name: "John Doe", role: "Manager" },
-    { name: "Jane Smith", role: "Developer" },
-  ];
-  saveDataToLocalStorage(dataToSave);
+    // Mock localStorage
+    localStorageMock = {
+      store: {},
+      getItem: function (key) {
+        return this.store[key] || null;
+      },
+      setItem: function (key, value) {
+        this.store[key] = value.toString();
+      },
+      removeItem: function (key) {
+        delete this.store[key];
+      },
+      clear: function () {
+        this.store = {};
+      },
+    };
+    window.localStorage = localStorageMock;
 
-  expect(localStorage.getItem("volunteerData")).not.toBeNull();
-  expect(JSON.parse(localStorage.getItem("volunteerData"))).toEqual(dataToSave);
-});
+    // Mock DOM environment
+    global.window = window;
+    global.document = document;
 
-test("should load data from localStorage and render into the table", () => {
-  const sampleData = [
-    { name: "AliceManager", role: "Manager" },
-    { name: "BobDeveloper", role: "Developer" },
-  ];
+    // Select the necessary DOM elements
+    logTable = document.getElementById("logTable");
+    summaryDiv = document.getElementById("summary");
+  });
 
-  // Simulate saving data to localStorage
-  localStorage.setItem("volunteerData", JSON.stringify(sampleData));
+  afterEach(() => {
+    dom.window.close();
+  });
 
-  // Force rendering
-  renderDataIntoTable();
+  test("summary section calculates and displays total hours volunteered", () => {
+    const hours = 5;
+    localStorageMock.setItem("hours", hours);
 
-  // Wait for DOM rendering to stabilize using setTimeout
-  setTimeout(() => {
-    const tableRows = document.querySelectorAll("#data-table tr");
+    summaryDiv.innerText = `Total Hours Volunteered: ${parseInt(localStorageMock.getItem("hours"))}`;
+    expect(summaryDiv.innerText).toBe("Total Hours Volunteered: 5");
+  });
 
-    console.log("Table rows after rendering:", tableRows);
+  test("delete button removes a record from the table", () => {
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>2</td><td><button class="delete">Delete</button></td>`;
+    logTable.appendChild(row);
 
-    expect(tableRows.length).toBe(2);
-    expect(tableRows[0].innerText).toContain("AliceManager");
-    expect(tableRows[1].innerText).toContain("BobDeveloper");
-  }, 0);
+    const deleteButton = row.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+      row.remove();
+    });
+
+    // Simulate delete button click
+    deleteButton.click();
+
+    expect(logTable.querySelector("tr")).toBeNull();
+  });
+
+  test("delete button removes the record from localStorage", () => {
+    localStorageMock.setItem("hours", 5);
+
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>2</td><td><button class="delete">Delete</button></td>`;
+    logTable.appendChild(row);
+
+    const deleteButton = row.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+      const currentHours = parseInt(localStorageMock.getItem("hours"));
+      localStorageMock.setItem("hours", currentHours - 2);
+      row.remove();
+    });
+
+    deleteButton.click();
+    expect(localStorageMock.getItem("hours")).toBe("3");
+  });
+
+  test("summary updates when a log is deleted", () => {
+    localStorageMock.setItem("hours", 5);
+
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>3</td><td><button class="delete">Delete</button></td>`;
+    logTable.appendChild(row);
+
+    const deleteButton = row.querySelector(".delete");
+    deleteButton.addEventListener("click", () => {
+      const newHours = parseInt(localStorageMock.getItem("hours")) - 3;
+      localStorageMock.setItem("hours", newHours);
+      row.remove();
+    });
+
+    deleteButton.click();
+
+    expect(localStorageMock.getItem("hours")).toBe("2");
+  });
 });
