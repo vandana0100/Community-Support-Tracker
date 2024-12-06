@@ -71,17 +71,40 @@ The form works well on both desktop and mobile devices.
 Amandeep's Role:
 Amandeep Kaur is responsible for developing this feature, ensuring the form is user-friendly, and implementing the necessary validation to ensure correct data input. Amandeep also focuses on making sure the tracker is responsive and integrates smoothly with the overall Community Support Tracker.
 
+
+### Volunteer Tracker - stage 2
+
+##  **Overview**
+
+The **Volunteer Tracker** is a web application designed to allow users to track and log their volunteer hours. In **Stage Two**, the app includes:
+
+- **Summary Section**: Dynamically calculates and displays the total hours volunteered.  
+- **Log Deletion**: Allows users to delete log entries from both the table and `localStorage`.  
+
 ---
+
+## **Features**
+
+- **Total Hours Summary**: Automatically calculates and updates the summary section to show the total hours volunteered.  
+- **Log Deletion**: Each log entry in the table includes a **"Delete"** button, allowing users to remove the log from both the visible table and `localStorage`.  
+- **Persistence**: Volunteer logs are saved using `localStorage` so that data remains even after reloading the page.
+
+---
+
+##  **Files**
+
+The following files are part of this implementation:
+
+- **`volunteerTracker.js`**: Contains logic for updating the summary and implementing deletion functionality.  
+- **`volunteerTracker.test.js`**: Jest test suite to verify that deletion and summary updates work as expected.  
+- **`volunteer_tracker.html`**: The HTML layout for the volunteer logs table and summary section.  
+
+Created by Amandeep Kaur
+
+---
+
+
+
+
 
 ### Event Signup  
-An organized way to register and track participation in community events.  
-
----
-
-## File Structure  
-COMMUNITY_SUPPORT_TRACKER/
-│
-├── template.html              # Main HTML file
-├── styles.css              # Shared CSS file
-├── README.md               # Project documentation
-└── STYLE_GUIDE.md                # Style guide for Community Support Tracker
